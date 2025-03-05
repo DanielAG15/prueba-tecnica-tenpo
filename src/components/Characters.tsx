@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -39,25 +40,35 @@ const Characters = () => {
     dispatch(setSearchQuery(query));
     if (query.length > 2) {
       dispatch(fetchCharacterByName(query));
-    } else {
-      dispatch(fetchCharacters(currentPage)); // Si la búsqueda es vacía, volver a la lista original
     }
   };
 
   return (
     <Container sx={{ py: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        Personajes de Anime
-      </Typography>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Typography variant="h4" gutterBottom>
+          Personajes de Anime
+        </Typography>
+      </motion.div>
 
-      <TextField
-        fullWidth
-        label="Buscar personaje..."
-        variant="outlined"
-        value={searchQuery}
-        onChange={(e) => handleSearch(e.target.value)}
-        sx={{ mb: 3 }}
-      />
+      <motion.div
+        initial={{ scale: 0.9 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        <TextField
+          fullWidth
+          label="Buscar personaje..."
+          variant="outlined"
+          value={searchQuery}
+          onChange={(e) => handleSearch(e.target.value)}
+          sx={{ mb: 3 }}
+        />
+      </motion.div>
 
       {status === "loading" && <CircularProgress />}
       {status === "failed" && <Alert severity="error">{error}</Alert>}
@@ -65,37 +76,47 @@ const Characters = () => {
       <Grid container spacing={3}>
         {filteredCharacters.map((character) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={character.mal_id}>
-            <Card>
-              <CardMedia
-                component="img"
-                height="250"
-                image={character.images.jpg.image_url}
-                alt={character.name}
-              />
-              <CardContent>
-                <Typography variant="h6">{character.name}</Typography>
-                <Typography variant="body2" color="textSecondary">
-                  Nombre Japonés: {character.name_kanji || "Desconocido"}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  Favoritos: {character.favorites || 0}
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 1 }}>
-                  {character.about
-                    ? character.about.length > 150
-                      ? character.about.substring(0, 150) + "..."
-                      : character.about
-                    : "Sin descripción"}
-                </Typography>
-              </CardContent>
-            </Card>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Card>
+                <CardMedia
+                  component="img"
+                  height="250"
+                  image={character.images.jpg.image_url}
+                  alt={character.name}
+                />
+                <CardContent>
+                  <Typography variant="h6">{character.name}</Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    Nombre Japonés: {character.name_kanji || "Desconocido"}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    Favoritos: {character.favorites || 0}
+                  </Typography>
+                  <Typography variant="body2" sx={{ mt: 1 }}>
+                    {character.about
+                      ? character.about.length > 150
+                        ? character.about.substring(0, 150) + "..."
+                        : character.about
+                      : "Sin descripción"}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </motion.div>
           </Grid>
         ))}
       </Grid>
 
-      {/* Botones de paginación */}
-      <div
+      <motion.div
         style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
       >
         <Button
           variant="contained"
@@ -116,7 +137,7 @@ const Characters = () => {
         >
           Siguiente
         </Button>
-      </div>
+      </motion.div>
     </Container>
   );
 };
