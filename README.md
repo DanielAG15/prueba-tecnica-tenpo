@@ -1,54 +1,64 @@
-# React + TypeScript + Vite
+# Anime Explorer - React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Descripción
 
-Currently, two official plugins are available:
+Anime Explorer es una aplicación desarrollada en React + Redux que permite explorar personajes de anime, buscar por nombre y visualizar detalles de cada uno.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologías Utilizadas
 
-## Expanding the ESLint configuration
+- **React** (Vite + TypeScript)
+- **Redux Toolkit** (Manejo de estado global)
+- **Axios** (Consumo de API y simulación de login)
+- **Material UI** (Diseño de la interfaz)
+- **Framer Motion** (Animaciones y transiciones)
+- **React Router** (Navegación entre páginas)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🔧 Instalación y Ejecución
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 1️⃣ Clonar el Repositorio
+
+```bash
+git clone https://github.com/DanielAG15/prueba-tecnica-tenpo
+cd tenpo-challenge
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2️⃣ Instalar Dependencias
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm install
 ```
+
+### 3️⃣ Ejecutar la Aplicación
+
+```bash
+npm run dev
+```
+
+La aplicación estará disponible en `http://localhost:5173/` (Vite).
+
+## 🌟 Funcionalidades Principales
+
+✅ **Autenticación Simulada** con generación de token falso.  
+✅ **Listado de 2000+ personajes de anime** con paginación.  
+✅ **Búsqueda en tiempo real** con consulta a la API.  
+✅ **Modo Oscuro** con persistencia en `localStorage`.  
+✅ **Tarjetas de personajes atractivas** con más detalles (nombre en japonés, favoritos y descripción).  
+✅ **Animaciones suaves** con Framer Motion.  
+✅ **Logout con eliminación del usuario y token.**
+
+## 🔥 Mejoras Implementadas
+
+- Uso de **Axios con Interceptores** para enviar el token en cada request.
+- Optimización de **Redux** para manejo eficiente del estado global.
+- Diseño moderno y responsivo con **Material UI**.
+- Manejo de errores en las peticiones a la API.
+- Uso de **localStorage** para persistencia de sesión y modo oscuro.
+
+## 📜 API Utilizada
+
+- **[Jikan API](https://docs.api.jikan.moe/)** (Base de datos de anime y personajes de MyAnimeList)
+
+---
+
+💡 **Desarrollado por:** [Daniel Anzoategui]  
+📅 **Última actualización:** [05/03/2025]
