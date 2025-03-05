@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux/slices/authSlice";
@@ -21,13 +21,7 @@ const Login = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch = useDispatch<any>();
   const navigate = useNavigate();
-  const { user, status, error } = useSelector((state: RootState) => state.auth);
-
-  useEffect(() => {
-    if (user && window.location.pathname === "/") {
-      navigate("/home");
-    }
-  }, [user, navigate]);
+  const { status, error } = useSelector((state: RootState) => state.auth);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
