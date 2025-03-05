@@ -38,7 +38,7 @@ const Characters = () => {
 
   const handleSearch = (query: string) => {
     dispatch(setSearchQuery(query));
-    if (query.length > 2) {
+    if (query.length > 3) {
       dispatch(fetchCharacterByName(query));
     }
   };

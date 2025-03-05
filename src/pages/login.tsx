@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux/slices/authSlice";
 import { RootState } from "../redux/store";
+import logo from "../assets/logo.png";
 import {
   TextField,
   Button,
@@ -20,7 +21,13 @@ const Login = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch = useDispatch<any>();
   const navigate = useNavigate();
-  const { status, error } = useSelector((state: RootState) => state.auth);
+  const { user, status, error } = useSelector((state: RootState) => state.auth);
+
+  useEffect(() => {
+    if (user && window.location.pathname === "/") {
+      navigate("/home");
+    }
+  }, [user, navigate]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,6 +54,18 @@ const Login = () => {
         elevation={3}
         sx={{ padding: 4, width: "100%", textAlign: "center" }}
       >
+        <img
+          src={logo}
+          alt="Logo Anime Explorer"
+          width="150"
+          style={{ marginBottom: "10px" }}
+        />
+        <Typography variant="h4" fontWeight="bold" color="primary">
+          ¡Bienvenido a Anime Explorer!
+        </Typography>
+        <Typography variant="body1" sx={{ mb: 2 }}>
+          Descubre y explora miles de personajes de anime.
+        </Typography>
         <Typography variant="h5" gutterBottom>
           Iniciar Sesión
         </Typography>
